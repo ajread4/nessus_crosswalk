@@ -1,21 +1,19 @@
 # Pull the most recent KEV catalog 
 
 import argparse
-import os
 import requests
+import os 
 import pandas as pd 
 import urllib.request 
 import json
 import xmltodict
-from bs4 import BeautifulSoup as bs
-import lxml
 
 def main():
     """
     	Main function for crosswalk
     """
     parser = argparse.ArgumentParser(
-        description='nessus_crosswalk - a capability to extract statistics from Nessus scans based on CISA Known and Exploited Vulnerabilities (KEV)')
+        description='nessus_crosswalk - a capability that returns vulnerability results from Nessus scans that map to the CISA KEV catalog')
     parser.add_argument('nessus_scan' ,action='store',help='specify the input nessus scan, must be .csv')
     args=parser.parse_args()
 
@@ -30,14 +28,14 @@ Determine the type of nmap file
 """
 def determine_filetype(input_file):
 	if os.path.splitext(input_file)[1] == ".csv":
-		print("[+] Requested Statistics for .csv file")
+		print("[+] Requested Statistics for valid file")
 		return True 
 	else: 
-		print("[+] Requested Statistics for invalid file, must be either .nessus or .csv")
+		print("[+] Requested Statistics for invalid file, must be .csv")
 		return False 
 
 """
-Create statistics for CSV file
+Count occurrences of CVE IDs in Nessus scan
 """
 def create_stats_csv(scan_output):
 	stats_db={}
@@ -56,7 +54,7 @@ def create_stats_csv(scan_output):
 	return sorted(stats_db.items(), key=lambda x: x[1], reverse=True)
 
 """
-Pull down the JSON version of the CISA KEV using Pandas
+Pull down the JSON version of the most-recent CISA KEV catalog in JSON format and convert to Pandas DataFrame
 """
 def pulldown_json():
 	URL='https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json'
@@ -64,7 +62,9 @@ def pulldown_json():
 	full_df=pd.DataFrame(json.loads(r.text))
 	return full_df['vulnerabilities'].apply(pd.Series)
 
-
+"""
+Call main function
+"""
 if __name__ == "__main__":
     try:
         main()
