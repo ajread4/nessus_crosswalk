@@ -1,6 +1,6 @@
 # Nessus Crosswalk for CISA Known and Exploited Vulnerabilities (KEV)
 
-nessus_crosswalk is a capability that returns vulnerability results from Nessus scans that map to the most recent CISA KEV catalog. The output is a sorted list of CVE IDs, based on number of occurrences in the Nessus scans, in the following format: ```[('CVE-####-#####',Number of Occurrence)]```. 
+nessus_crosswalk is a capability that returns vulnerability results from Nessus scans that map to the most recent CISA KEV catalog. The output is a sorted list of CVE IDs, based on number of occurrences in the Nessus scans, in the following format: ```[('CVE-####-#####', Number_of_Occurrences)]```. 
 ## Install 
 ```
 $ git clone https://github.com/ajread4/nessus_crosswalk.git
