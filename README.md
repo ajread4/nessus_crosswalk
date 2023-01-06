@@ -1,4 +1,4 @@
-# Nessus Crosswalk for CISA Known and Exploited Vulnerabilities (KEV)
+# Nessus Crosswalk for CISA Known Exploited Vulnerabilities (KEV)
 
 nessus_crosswalk is a capability that returns vulnerability results from Nessus scans that map to the most recent CISA KEV catalog. The output is a sorted list of CVE IDs, based on number of occurrences in the Nessus scans, in the following format: ```[('CVE-####-#####', Number_of_Occurrences)]```. 
 ## Install 
@@ -25,7 +25,7 @@ optional arguments:
 $ python3 crosswalk.py nessus_scan.csv
 Stats for nessus_scan.csv: [('CVE-2019-0211', 2), ('CVE-2019-11043', 2), ('CVE-2021-40438', 2)]
 ```
-## CISA Known and Exploited Vulnerabilities Catalog
-The CISA Known and Exploited Vulnerabilities (KEV) can be found [here](https://www.cisa.gov/known-exploited-vulnerabilities-catalog). The catalog is able to be downloaded as a CSV or JSON.  
+## CISA Known Exploited Vulnerabilities Catalog
+The CISA Known Exploited Vulnerabilities (KEV) can be found [here](https://www.cisa.gov/known-exploited-vulnerabilities-catalog). The catalog is able to be downloaded as a csv or json.  
 ## Author
 All code was written by AJ Read (ajread4). 
