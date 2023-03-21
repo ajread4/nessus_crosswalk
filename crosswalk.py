@@ -40,7 +40,7 @@ Count occurrences of CVE IDs in Nessus scan
 def create_stats_csv(scan_output):
 	stats_db={}
 	kev_df=pulldown_json()
-	scan_df=pd.read_csv(scan_output)
+	scan_df=pd.read_csv(scan_output,engine='python')
 
 	# Loop through each row in the Nessus Scan 
 	for scan_row in scan_df.itertuples():
@@ -51,7 +51,7 @@ def create_stats_csv(scan_output):
 			else: 
 				old_value=stats_db[scan_row.CVE]
 				stats_db[scan_row.CVE]=old_value + 1
-	return sorted(stats_db.items(), key=lambda x: x[1], reverse=True)
+	return dict(sorted(stats_db.items(), key=lambda item: item[1],reverse=True)) 
 
 """
 Pull down the JSON version of the most-recent CISA KEV catalog in JSON format and convert to Pandas DataFrame
